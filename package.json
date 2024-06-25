@@ -18,6 +18,13 @@
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
+    "@tensorflow/tfjs-node": "^4.20.0",
+    "admin-lte": "^3.2.0",
+    "bootstrap": "^5.3.3",
+    "canvas": "^2.11.2",
+    "face-api.js": "^0.22.2",
+    "jquery": "^3.7.1",
+    "ngx-webcam": "^0.4.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

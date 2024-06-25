@@ -1,0 +1,92 @@
+<div class="wrapper">
+  <app-navbar />
+
+  <div class="content-wrapper" style="min-height: 758px">
+    <div class="content-header">
+      <div class="container">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Photo</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="container">
+
+
+
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Cadastrar facematcher</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+              <i class="fas fa-minus"></i>
+              </button>
+              
+              </div>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="form">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Pessoa</label>
+                    <select formControlName="id" class="form-control">
+                      <option></option>
+                      @for(row of pessoas; track row; let index = $index){
+                      <option value="{{ row.id }}">{{ row.nome }}</option>
+                      }
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  @if(sysImage){
+                    <img
+                      #imagetaked
+                      *ngIf="sysImage"
+                      style="height: 300px"
+                      [src]="webcamImage.imageAsDataUrl"
+                    />
+                    } @if(!sysImage && showWebcam){
+                    <webcam
+                      [height]="300"
+                      [trigger]="triggerObservable"
+                      (imageCapture)="handleImage($event)"
+                      [allowCameraSwitch]="allowCameraSwitch"
+                      [switchCamera]="nextWebcamObservable"
+                      [videoOptions]="videoOptions"
+                      (cameraSwitched)="cameraWasSwitched($event)"
+                      (initError)="handleInitError($event)"
+                    ></webcam>
+                    <br />
+                    } @if(!sysImage && showWebcam){
+                      <button [disabled]="!form.value.id" (click)="getSnapshot()" class="btn btn-primary btn-block"
+                        >Tirar foto
+                      </button>
+                    } @if(facematcher){
+                      <div class="alert alert-success alert-dismissible">
+                        <h5><i class="icon fas fa-check"></i> Rosto detectado</h5>
+                      </div>
+                    } @if(sysImage && !facematcher){
+                      <a (click)="sysImage = ''" class="btn btn-info btn-block"
+                        >Tirar novamente
+                      </a>
+                    }
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <button [disabled]="form.invalid" (click)="cadastrar()" class="btn btn-primary btn-block">Cadastrar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+</div>

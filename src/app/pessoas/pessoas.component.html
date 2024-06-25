@@ -1,0 +1,80 @@
+<div class="wrapper">
+  <app-navbar />
+
+  <div class="content-wrapper" style="min-height: 100%">
+    <div class="content-header">
+      <div class="container">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Pessoas</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="container">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Cadastrar pessoa</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+              <i class="fas fa-minus"></i>
+              </button>
+              
+              </div>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="form">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      formControlName="nome"
+                      id="nome"
+                      placeholder="Nome"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <button
+                    (click)="cadastrar()"
+                    [disabled]="form.invalid"
+                    class="btn btn-primary mt-4"
+                  >
+                    Cadastrar
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <table class="table table-bordered mt-3">
+          <thead>
+            <tr>
+              <th style="width: 10px">#</th>
+              <th>Nome</th>
+              <th>Facematcher</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(row of pessoas; track row; let index = $index){
+            <tr>
+              <td>{{ row.id }}</td>
+              <td>{{ row.nome }}</td>
+              <td>
+                @if(row.facematcher){
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                }
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
